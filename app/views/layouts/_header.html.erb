@@ -1,22 +1,52 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="pull-right">
-        <% if admin_signed_in? %>
-          <%= link_to '商品一覧', admin_items_path, class: "btn btn-outline-dark" %>
-          <%= link_to '会員一覧', admin_customers_path, class: "btn btn-outline-dark" %>
-          <%= link_to '注文履歴一覧', admin_root_path, class: "btn btn-outline-dark" %>
-          <%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-outline-dark" %>
-          <%= link_to 'ログアウト', destroy_admin_session_path, class: "btn btn-outline-dark" %>
-        <% else %>
-          <%= link_to 'About', about_path, class: "btn btn-outline-dark" %>
-          <%= link_to '商品一覧', items_path, class: "btn btn-outline-dark" %>
-          <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-outline-dark" %>
-          <% if customer_signed_in? %>
-            <%= link_to 'ログアウト', destroy_customer_session_path, class: "btn btn-outline-dark" %>
-          <% else %>
-            <%= link_to 'ログイン', new_customer_session_path, class: "btn btn-outline-dark" %>
-          <% end %>
-        <% end %>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#DFD8C8;">
+    <!--イラストロゴ-->
+    <div class="navbar-brand mb-auto">
+      <%= image_tag 'linkedin_banner_image_1.png', height: '100px' %>
+    </div>
+
+    <!--購入ガイド-->
+    <div class="dropdown mt-auto mb-3">
+      <button type="button" id="dropdown1"
+          class="btn btn-outline-dark dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+        ご注文の流れ
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdown1">
+        <a class="dropdown-item">1. ログインする</a>
+        <a class="dropdown-item">2. カートに入れる</a>
+        <a class="dropdown-item">3. 購入ボタンを押す</a>
       </div>
+    </div>
+
+    <!--メニューボタン-->
+    <div class="mb-auto ml-auto">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <% if admin_signed_in? %>
+            <li><%= link_to '商品一覧', admin_items_path, class: "btn btn-outline-dark m-3" %></li>
+            <li><%= link_to '会員一覧', admin_customers_path, class: "btn btn-outline-dark m-3" %></li>
+            <li><%= link_to '注文履歴一覧', admin_root_path, class: "btn btn-outline-dark m-3" %></li>
+            <li><%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-outline-dark m-3" %></li>
+            <li><%= link_to 'ログアウト', destroy_admin_session_path, class: "btn btn-outline-dark m-3" %></li>
+          <% else %>
+            <li><%= link_to 'About', about_path, class: "btn btn-outline-dark m-3" %></li>
+            <li><%= link_to '商品一覧', items_path, class: "btn btn-outline-dark m-3" %></li>
+            <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-outline-dark m-3" %></li>
+            <% if customer_signed_in? %>
+              <li><%= link_to 'ログアウト', destroy_customer_session_path, class: "btn btn-outline-dark m-3" %></li>
+            <% else %>
+              <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-outline-dark m-3" %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </nav>
 </header>
