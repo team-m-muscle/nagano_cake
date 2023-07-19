@@ -1,29 +1,36 @@
-<form>
+<form class="container form-horizontal">
   <%= form_with model:Item, local: true do |f| %>
-    <div>
-      <a>商品画像</a>
-      <%= f.file_field :item_image %>
+    <div class="row form-group">
+      <label class="col-md-2">商品画像</label>
+      <div class="col-md-10"><%= f.file_field :item_image %></div>
     </div>
-    <div>
-      <a>商品名</a>
-      <%= f.text_field :name %>
+    <div class="row form-group">
+      <label class="col-md-2">商品名</label>
+      <div class="col-md-10"><%= f.text_field :name, placeholder: "商品名" %></div>
     </div>
-    <div>
-      <a>商品説明</a>
-      <%= f.text_area :explanation %>
+    <div class="row form-group">
+      <label class="col-md-2">商品説明</label>
+      <div class="col-md-10"><%= f.text_area :explanation, placeholder: "ここに説明文を記述します" %></div>
     </div>
-    <div>
-      <a>ジャンル</a>
-      <%= f.text_field :genre_id %>
+    <div class="row form-group">
+      <label class="col-md-2">ジャンル</label>
+      <div class="col-md-10"><%= f.text_field :genre_id %></div>
     </div>
-    <div>
-      <a>税抜き価格</a>
-      <%= f.text_field :name %>
+    <div class="row form-group">
+      <label class="col-md-2">税抜き価格</label>
+      <div class="col-md-10"><%= f.text_field :name, placeholder: "1000" %>円</div>
     </div>
-    <div>
-      <a>販売ステータス</a>
-      <%= f.text_field :name %>
+    <div class="row form-group">
+      <label class="col-md-2">販売ステータス</label>
+      <div class="col-md-10">
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active, "販売中" %>
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active, "販売停止中" %>
+      </div>
     </div>
-    <%= f.submit "新規登録",
+    <%= f.submit "新規登録", class: "btn btn-success" %>
+  </div>
+  </div>
   <% end %>
 </form>
