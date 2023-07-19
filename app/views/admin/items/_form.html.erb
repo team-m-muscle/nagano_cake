@@ -1,0 +1,12 @@
+<form>
+  <%= form_with model:Item, local: true do |f| %>
+    <div>
+      <a>商品画像</a>
+      <%= f.file_field :item_image %>
+    </div>
+    <div>
+      <a>商品名</a>
+      <%= f.text_field :name %>
+    </div>
+  <% end %>
+</form>
