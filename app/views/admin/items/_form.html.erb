@@ -1,35 +1,45 @@
-<form class="container form-horizontal">
-  <%= form_with model:Item, local: true do |f| %>
+<form>
+  <%= form_with model: item, local: true do |f| %>
     <div class="row form-group">
-      <label class="col-md-2">商品画像</label>
-      <div class="col-md-10"><%= f.file_field :item_image %></div>
+      <label class="col-md-2 offset-md-2">商品画像</label>
+      <div class="col-md-6"><%= f.file_field :item_image %></div>
     </div>
     <div class="row form-group">
-      <label class="col-md-2">商品名</label>
-      <div class="col-md-10"><%= f.text_field :name, placeholder: "商品名" %></div>
+      <label class="col-md-2 offset-md-2">商品名</label>
+      <div class="col-md-6"><%= f.text_field :name, placeholder: "商品名", class: "form-control" %></div>
     </div>
     <div class="row form-group">
-      <label class="col-md-2">商品説明</label>
-      <div class="col-md-10"><%= f.text_area :explanation, placeholder: "ここに説明文を記述します" %></div>
+      <label class="col-md-2 offset-md-2">商品説明</label>
+      <div class="col-md-6">
+        <%= f.text_area :explanation, placeholder: "ここに説明文を記述します", class: "form-control", size: "100x10" %>
+      </div>
     </div>
     <div class="row form-group">
-      <label class="col-md-2">ジャンル</label>
-      <div class="col-md-10"><%= f.text_field :genre_id %></div>
+      <label class="col-md-2 offset-md-2">ジャンル</label>
+      <% if Genre.all.empty? %>
+        <label class="col-md-5">　：登録されているジャンルはありません</label>
+      <% else %>
+        <div class="col-md-6"><%= f.select :genre_id, Genre.all.map{|genre| [genre.name, genre.id]}, {},class: "form-control" %></div>
+      <% end %>
     </div>
     <div class="row form-group">
-      <label class="col-md-2">税抜き価格</label>
-      <div class="col-md-10"><%= f.text_field :name, placeholder: "1000" %>円</div>
+      <label class="col-md-2 offset-md-2">税抜き価格</label>
+      <div class="col-md-6"><%= f.text_field :name, placeholder: "1000", class: "form-control" %></div>円
     </div>
     <div class="row form-group">
-      <label class="col-md-2">販売ステータス</label>
-      <div class="col-md-10">
-        <%= f.radio_button :is_active, true %>
-        <%= f.label :is_active, "販売中" %>
+      <label class="col-md-2 offset-md-2">販売ステータス</label>
+      <div class="col-md-6">
+        <%= f.radio_button :is_active, true, checked: true %>
+        <%= f.label :is_active, "販売中", class: "mr-3" %>
         <%= f.radio_button :is_active, false %>
         <%= f.label :is_active, "販売停止中" %>
       </div>
     </div>
-    <%= f.submit "新規登録", class: "btn btn-success" %>
+    <div class="row">
+      <div class="col-md-2 offset-md-5">
+        <%= f.submit "新規登録", class: "btn-lg btn-success" %>
+      </div>
+    </div>
   </div>
   </div>
   <% end %>
