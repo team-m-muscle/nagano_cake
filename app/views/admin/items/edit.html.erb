@@ -1,3 +1,7 @@
+  <% unless @item.nil? %>
+    <%= render 'layouts/errors', obj: @item %>
+  <% end %>
+
 <div class="container mt-100">
   <div class="row"><br><br><br></div>
   <div class= "row m-10">

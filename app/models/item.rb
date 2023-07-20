@@ -4,6 +4,10 @@ class Item < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :order_items, dependent: :destroy
 
+  validates :name, presence:true
+  validates :explanation, presence:true
+  validates :price, presence:true, numericality: {greater_than_or_equal_to: 1}
+
   has_one_attached :item_image
 
 #  デフォルト画像の保存場所など決まったら実装する
