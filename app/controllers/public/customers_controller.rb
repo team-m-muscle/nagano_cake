@@ -20,10 +20,15 @@ class Public::CustomersController < ApplicationController
   end
 
   def leave
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    flash[:left] = "退会しました"
+    redirect_to root_path
   end
 
   private
   def customer_params
-    params.require(:customer).permit(:email, :last_name, :first_name, :last_name_reading, :first_name_reading, :post_code, :address, :phone_number)
+    params.require(:customer).permit(:email, :last_name, :first_name, :last_name_reading, :first_name_reading, :post_code, :address, :phone_number, :is_deleted)
   end
 end
