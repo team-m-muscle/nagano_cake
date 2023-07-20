@@ -1,5 +1,4 @@
-<form>
-  <%= form_with model: item, local: true do |f| %>
+  <%= form_with model:item, url: admin_items_path, local: true, method: :post do |f| %>
     <div class="row form-group">
       <label class="col-md-2 offset-md-2">商品画像</label>
       <div class="col-md-6"><%= f.file_field :item_image %></div>
@@ -24,7 +23,7 @@
     </div>
     <div class="row form-group">
       <label class="col-md-2 offset-md-2">税抜き価格</label>
-      <div class="col-md-6"><%= f.text_field :name, placeholder: "1000", class: "form-control" %></div>円
+      <div class="col-md-6"><%= f.text_field :price, placeholder: "1000", class: "form-control" %></div>円
     </div>
     <div class="row form-group">
       <label class="col-md-2 offset-md-2">販売ステータス</label>
@@ -40,7 +39,4 @@
         <%= f.submit "新規登録", class: "btn-lg btn-success" %>
       </div>
     </div>
-  </div>
-  </div>
   <% end %>
-</form>
