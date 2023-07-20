@@ -1,16 +1,72 @@
-<h3 class="genre-head">ジャンル一覧・追加</h3>
-
-<%= form_with model: @genre, url: admin_genres_path do |f| %>
-      <div>
-          <%= f.label :ジャンル %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h3 class="genre-head">ジャンル一覧・追加</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7">
+        <%= form_with model: @genre, url: admin_genres_path do |f| %>
+          <div>
+          <%= f.label :ジャンル名 %>
           <%= f.text_field :name %>
           <%= f.submit "新規登録", class: "btn btn-primary genre_btn" %>
-      </div>
-<% end %>
-
- <% @genres.each do |genre| %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <table class="table table-striped">
+        <tr><td>ジャンル</td></tr>
+        <% @genres.each do |genre| %>
         <tr>
           <td><%= genre.name %></td>
           <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-primary" %></td>
         </tr>
-      <% end %>
+      　<% end %>
+      </table>
+   </div>
+ </div>      
+</div>
+
+<h1 class="my-3 ml-3">テーブル</h1>
+
+    <div class="col-5 ml-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>氏名</th>
+                    <th>得意言語</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>エンジニア1</td>
+                    <td>PHP</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>エンジニア2</td>
+                    <td>Ruby</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>エンジニア3</td>
+                    <td>VBA</td>
+                    </tr>
+                <tr>
+                    <td>4</td>
+                    <td>エンジニア4</td>
+                    <td>JAVA</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>エンジニア5</td>
+                    <td>Python</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
