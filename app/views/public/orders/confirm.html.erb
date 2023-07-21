@@ -1,7 +1,9 @@
-<h1>注文情報確認</h1>
+<div class="container">
+  <h1>注文情報確認</h1>
 
-<%= render '/public/cart_items/index', cart_items: @cart_items %>
+  <%= render '/public/cart_items/list', cart_items: @cart_items %>
 
-<% form_with model: @order do |f| %>
-注文を確定する
-<% end %>
+  <% form_with model: @order do |f| %>
+  注文を確定する
+  <% end %>
+</div>

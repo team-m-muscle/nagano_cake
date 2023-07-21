@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2023_07_20_054952) do
     t.string "last_name_reading", null: false
     t.string "first_name_reading", null: false
     t.string "phone_number", null: false
+    t.string "post_code", null: false
+    t.string "address", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
