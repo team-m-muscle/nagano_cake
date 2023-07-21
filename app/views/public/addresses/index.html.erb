@@ -1,4 +1,6 @@
-<h3>配送先登録/一覧</h3>
+      <h3>配送先登録/一覧</h3>
+    </div>
+  </div>
   <div class="row">
 
     <div class="col-sm-10 px-sm-0 mx-auto">
@@ -27,24 +29,27 @@
       <% end %>
     </div>
 
-    <div class="row shipping-lists">
+    <div class="row">
       <div class="col-sm-10 px-sm-0 mx-auto">
         <table class="table table-bordered">
           <thead class="table-active">
             <tr>
               <th>郵便番号</th>
               <th>住所</th>
-              <th>宛先</th></th>
+              <th>宛名</th>
               <th colspan="2"></th>
             </tr>
           </thead>
           <tbody>
           <% @shipping_addresses.each do |shipping_address| %>
             <tr>
-              <td><%= shipping_address.shipping_postcode %></td>
-              <td><%= shipping_address.shipping_address %></td>
-              <td><%= shipping_address.shipping_name %></td>
-              <td><%= link_to "編集する", edit_shipping_address_path(shipping_address), class:"btn btn-success" %> <%= link_to "削除する", shipping_address, method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></td>
+              <td><%= shipping_address.post_code %></td>
+              <td><%= shipping_address.address %></td>
+              <td><%= shipping_address.name %></td>
+              <td>
+                <%= link_to "編集する", edit_address_path(shipping_address), class:"btn btn-success" %>
+                <%= link_to "削除する", shipping_address, method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
+              </td>
             </tr>
           <% end %>
           </tbody>
@@ -53,3 +58,4 @@
     </div>
 
   </div>
+</div>
