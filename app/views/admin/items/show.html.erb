@@ -1,0 +1,41 @@
+<!--グリッドシステムのコードが見づらいので、後ほどテーブルにする！-->
+<h1>商品詳細</h1>
+<div class="container">
+<div class="row">
+<div class="col-4">
+  <%= image_tag @item.item_image, size:'200x200' %>
+</div>
+<div class="col-8">
+  <div class="row">
+    <div class="col-3">商品名</div>
+    <div class="col-9"><%= @item.name %></div>
+  </div>
+  <div class="row">
+    <div class="col-3">商品説明</div>
+    <div class="col-9"><%= @item.explanation %></div>
+  </div>
+  <div class="row">
+    <div class="col-3">ジャンル</div>
+    <div class="col-9"><%= Genre.find(@item.genre_id).name %></div>
+  </div>
+  <div class="row">
+    <div class="col-3">税込み価格<br>（税抜価格）</div>
+    <div class="col-9">
+      <%= number_to_currency(@item.price, format: "%n%u", unit: "円", precision: 0) %>
+      （<%= number_to_currency(@item.price*1.1, format: "%n%u", unit: "円", precision: 0) %>）
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">販売ステータス</div>
+    <div class="col-9">
+      <% if @item.is_active %>販売中
+      <% else %>販売中止
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-success" %>
+  </div>
+</div>
+</div>
+</div>
