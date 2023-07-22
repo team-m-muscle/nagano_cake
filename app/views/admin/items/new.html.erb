@@ -1,0 +1,16 @@
+  <% unless @item.nil? %>
+    <%= render 'layouts/errors', obj: @item %>
+  <% end %>
+
+<div class="container">
+  <div class="row"><br><br><br></div>
+  <div class= "row m-10">
+    <div class="col bg-light">
+      <h3>商品新規登録</h3>
+    </div>
+  </div>
+  <br><br>
+  <div class="row mr-10">
+    <%= render '/admin/items/form', item: @item %>
+  </div>
+</div>
