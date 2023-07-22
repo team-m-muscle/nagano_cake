@@ -10,10 +10,12 @@ class Public::AddressesController < ApplicationController
     @shipping_address = Address.new(address_params)
     @shipping_address.customer_id = current_customer.id
     if @shipping_address.save
+      flash[:notice] = "登録完了しました。"
       redirect_to addresses_path
     else
       @customer = current_customer
       @shipping_addresses = @customer.addresses
+      flash[:notice] = "内容に不備があります。"
       render 'index'
     end
 
@@ -24,12 +26,13 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
-
     @shipping_address = Address.find(params[:id])
     if @shipping_address.update(address_params)
-       redirect_to addresses_path
+      flash[:notice] = "変更完了しました。"
+      redirect_to addresses_path
     else
-       render 'edit'
+      flash[:notice] = "内容に不備があります。"
+      render 'edit'
     end
 
   end
@@ -38,6 +41,7 @@ class Public::AddressesController < ApplicationController
     @shipping_address = Address.find(params[:id])
     @shipping_address.customer_id = current_customer.id
     @shipping_address.destroy
+    flash[:notice] = "登録先を削除しました。"
     redirect_to addresses_path
   end
 
