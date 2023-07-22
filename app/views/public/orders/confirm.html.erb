@@ -4,7 +4,14 @@
     <div class="col-8"><%= render '/public/cart_items/list', cart_items: @cart_items %></div>
     <div class="col-3 offset-1"><%= render '/public/orders/total_list', cart_items: @cart_items %></div>
   </div>
-  <% form_with model: @order do |f| %>
-  注文を確定する
+  <div class="row">
+    <h4>支払方法</h4><%= @order.payment_option %>
+  </div>
+  <div class="row">
+    <h4>お届け先</h4><span><%= @order.address_display %></span>
+  </div>
+
+  <%= form_with model: @order do |f| %>
+    <%= f.submit "注文を確定する", class: "btn btn-success" %>
   <% end %>
 </div>

@@ -1,4 +1,46 @@
-<h4>注文情報入力</h4>
-支払方法
-お届け先
-<%= link_to "確認画面へ進む", orders_confirm_path, class: "btn btn-success", method: :post %>
+<div class="container">
+  <h4>注文情報入力</h4>
+    <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+      <h4 class="font-weight-bold">支払方法</h4>
+      <%= f.radio_button :payment_option, Order.payment_options[:credit_card], checked: true, class: "ml-4" %>
+      <%= f.label :payment_option, Order.payment_options_i18n[:credit_card] %><br>
+      <%= f.radio_button :payment_option, Order.payment_options[:transfer], class: "ml-4" %>
+      <%= f.label :payment_option, Order.payment_options_i18n[:transfer] %><br>
+
+      <h4 class="font-weight-bold">お届け先</h4>
+      <div class="form-group">
+        <span><%= f.radio_button :select_address, 0, checked: true, class: "ml-4" %>
+        <%= f.label :select_address, "ご自身の住所" %></span><br>
+        <span>〒<%= current_customer.post_code %><%= current_customer.address %></span><br>
+        <span><%= current_customer.last_name %><%= current_customer.first_name %></span>
+      </div>
+      <div class="form-group">
+        <%= f.radio_button :select_address, 1 %>
+        <%= f.label :select_address, "登録済住所から選択" %><br>
+        <% if current_customer.addresses.empty? %>
+          登録住所はありません<br>
+        <% else %>
+          <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses.all, :id, :address_display), {}, class: "form-control" %>
+        <% end %>
+      </div>
+        <%= f.radio_button :select_address, 2 %>
+        <%= f.label :destination, "新しいお届け先" %>
+        <table class="table table-borderless ml-3">
+          <tr>
+            <td class="col-3"><%= f.label :post_code, "郵便番号（ハイフンなし）" %></td>
+            <td class="col-8"><%= f.text_field :post_code, placeholder: "0000000", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :address, "住所" %></td>
+            <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :name, "宛名" %></td>
+            <td><%= f.text_field :name, placeholder: "令和道子", class: "form-control" %></td>
+          </tr>
+        </table>
+
+        <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
+    <% end %>
+</div>
+
