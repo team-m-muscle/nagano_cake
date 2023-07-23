@@ -11,6 +11,13 @@ ja:
         preparing_delivery: "発送準備中"
         delivered: "発送済み"
 
+    order_item:
+      making_status:
+        not_started: "着手不可"
+        pending: "製作待ち"
+        in_making: "製作中"
+        complete: "製作完了"
+
   activerecord:
     errors:
       messages:

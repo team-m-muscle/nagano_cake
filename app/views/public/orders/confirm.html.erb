@@ -1,17 +1,36 @@
+<!--会計価格計算-->
+<% @cart_items.each do |cart_item| %>
+  <% @total_price += cart_item.subtotal_price %>
+<% end %>
+<% @billing_price = @total_price + @shipping_fee %>
+
+<!--画面表示-->
 <div class="container">
-  <h1>注文情報確認</h1>
+  <br>
+  <h4 class="label bg-light">　注文情報確認</h4>
+  <br>
   <div class="row">
     <div class="col-8"><%= render '/public/cart_items/list', cart_items: @cart_items %></div>
-    <div class="col-3 offset-1"><%= render '/public/orders/total_list', cart_items: @cart_items %></div>
+    <div class="col-3 offset-1"><%= render '/public/orders/total_list', cart_items: @cart_items, total_price: @total_price, shipping_fee: @shipping_fee, billing_price: @billing_price %></div>
   </div>
-  <div class="row">
-    <h4>支払方法</h4><%= @order.payment_option %>
+  <div class="row ml-1 my-1">
+    <h5 class="font-weight-bold">支払方法</h5><h5>　<%= @order.payment_option_i18n %></h5>
   </div>
-  <div class="row">
-    <h4>お届け先</h4><span><%= @order.address_display %></span>
+  <div class="row ml-1 my-1">
+    <h5 class="font-weight-bold">お届け先</5h><h5>　<%= @order.address_display %></h5>
   </div>
-
-  <%= form_with model: @order do |f| %>
-    <%= f.submit "注文を確定する", class: "btn btn-success" %>
-  <% end %>
+  <div class="row my-5">
+    <div class="col-4 offset-4">
+      <%= form_with model: @order, local: true do |f| %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <%= f.hidden_field :shipping_fee, :value => @shipping_fee %>
+        <%= f.hidden_field :total_price, :value => @billing_price %>
+        <%= f.hidden_field :payment_option, :value => @order.payment_option %>
+        <%= f.hidden_field :address, :value => @order.address %>
+        <%= f.hidden_field :post_code, :value => @order.post_code %>
+        <%= f.hidden_field :name, :value => @order.name %>
+        <%= f.submit "注文を確定する", class: "btn-lg btn-success" %>
+      <% end %>
+    </div>
+  </div>
 </div>
