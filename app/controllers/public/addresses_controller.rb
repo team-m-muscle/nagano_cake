@@ -1,2 +1,2 @@
-class AddressesController < ApplicationController
+class Public::AddressesController < ApplicationController
 end
