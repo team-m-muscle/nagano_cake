@@ -7,7 +7,6 @@ class Public::CartItemsController < ApplicationController
     
     
   end
-
   def create
     @cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id])
     if @cart_item
@@ -41,6 +40,5 @@ class Public::CartItemsController < ApplicationController
   private
   def cart_item_params
       params.require(:cart_item).permit(:item_id, :quantity)
-  end
-
+  end   
 end

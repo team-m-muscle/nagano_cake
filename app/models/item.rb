@@ -10,6 +10,11 @@ class Item < ApplicationRecord
 
   has_one_attached :item_image
 
+  def get_item_image
+    (item_image.attached?) ? item_image : 'no_image.jpg'
+  end
+
+
 #  デフォルト画像の保存場所など決まったら実装する
 #  def get_image(width, height)
 #    unless item_image.attached?
