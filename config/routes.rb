@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     post 'orders/confirm' => 'orders#confirm'
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    get "items/:id/genre_search" => "items#search", as: "genre_search"
   end
   namespace :admin do
     root :to =>  'homes#top'
