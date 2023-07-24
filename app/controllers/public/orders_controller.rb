@@ -59,11 +59,12 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.where(customer_id: current_customer.id)
-
   end
 
   private
+
   def order_params
     params.require(:order).permit(:customer_id, :shipping_fee, :total_price, :payment_option, :address, :post_code, :name)
   end
+
 end
