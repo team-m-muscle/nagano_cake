@@ -1,0 +1,56 @@
+
+<tr>
+  <td><h1>ショッピングカート<h1></td>
+  <td><%= link_to cart_items_destroy_all_path, method: :delete do %><button class="btn btn-danger ">カートを空にする</button><% end %></td>
+</tr>
+
+  <table class="table table-bordered">
+  <thead class="table-secondary">
+    <th>商品名</th>
+    <th style="width: 20%">単価（税込）</th>
+    <th style="width: 20%">数量</th>
+    <th style="width: 15%">小計</th>
+    <% if current_page?(cart_items_path) %>
+      <th style="width: 15%"></th>
+    <% end %>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td>
+        <%= image_tag cart_item.item.get_item_image, size:"50x50" %>
+        <span class="ml-2"><%= cart_item.item.name %></span>
+      </td>
+      <td class="align-middle"><%= number_to_currency(cart_item.item.price * 1.1, precision: 0, unit: "") %></td>
+      <td class="align-middle">
+        <% if current_page?(cart_items_path) %>
+          <%= form_with model: cart_item do |f| %>
+            <div class="form-group row">
+              <div class="col-6"><%= f.number_field :quantity, min:1, class: "form-control" %></div>
+              <div class="col-auto"><%= f.submit "変更", class: "btn btn-success" %></div>
+            </div>
+          <% end %>
+        <% else %>
+          <%= cart_item.quantity %>
+        <% end %>
+      </td>
+      <td class="align-middle"><%= number_to_currency(cart_item.item.price * 1.1 * cart_item.quantity, precision: 0, unit: "") %> </td>
+      <% if current_page?(cart_items_path) %>
+        <td class="align-middle"><%= link_to "削除する",cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %> </td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+<%= link_to root_path do %>
+ <button class="btn btn-primary">買い物を続ける</button>
+<% end %>
+
+
+<%= link_to new_order_path do %>
+ <button class="btn btn-lg btn-success">情報入力に進む</button>
+<% end %>

@@ -1,0 +1,36 @@
+<h1>商品詳細</h1>
+<div class="container">
+<div class="row">
+<div class="col-4">
+  <%= image_tag @item.item_image, size:'200x200' %>
+</div>
+<div class="col-8">
+  <div class="row">
+    <div class="col-9"><h3><%= @item.name %></h3></div>
+  </div>
+  <div class="row">
+    <div class="col-3"><%= @item.explanation %></div>
+    <div class="col-9"></div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-3"><h4>¥<%= number_to_currency(@item.price*1.1, format: "%n%u", unit: "円", precision: 0) %>(税込)</h4></div>
+    <div class="col-9"></div>
+  </div>
+    <% if customer_signed_in? %>
+        <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+
+    <%= f.hidden_field :item_id, :value => @item.id %>
+
+    <div class="col-3"><%= f.number_field :quantity , placeholder: "個数選択", min: 1, max: 999999999 %></div>
+    <div class="col-9"><%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %></div>
+    <% end %>
+        <% end %>
+  </div>
+
+
+</div>
+</div>
+</div>
+
