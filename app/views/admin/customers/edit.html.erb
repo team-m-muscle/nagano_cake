@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10 col-offset-1">
+      <h4 class="my-3 px-4 bg-secondary"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h4>
+      <%= render "edit_customer", customer: @customer %>
+    </div>
+  </div>
+</div>

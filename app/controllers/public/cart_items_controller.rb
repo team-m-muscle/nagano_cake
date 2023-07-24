@@ -32,7 +32,6 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    CartItem.destroy_all
     current_customer.cart_items.destroy_all
     redirect_to cart_items_path
   end
@@ -41,4 +40,5 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
       params.require(:cart_item).permit(:item_id, :quantity)
   end   
+
 end
