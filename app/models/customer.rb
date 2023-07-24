@@ -13,7 +13,11 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :phone_number, presence: true
 
-  has_many :shipping_addresses, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
+
+  def address_display
+    '〒' + post_code + ' ' + address + ' ' + last_name + first_name
+  end
 end
