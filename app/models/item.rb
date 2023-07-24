@@ -14,6 +14,10 @@ class Item < ApplicationRecord
     (item_image.attached?) ? item_image : 'no_image.jpg'
   end
 
+  def with_tax_price
+    (price * 1.1).floor
+  end
+
 
 #  デフォルト画像の保存場所など決まったら実装する
 #  def get_image(width, height)
