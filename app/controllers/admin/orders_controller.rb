@@ -12,7 +12,7 @@ class Admin::OrdersController < ApplicationController
     @order_details = OrderItem.where(order_id: @order)
     if @order.update(order_status_params)
       flash[:notice] = "注文ステータスを変更しました。"
-      redirect_to admin_root_path
+      redirect_to request.referer
     else
       render "show"
     end
