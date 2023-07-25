@@ -35,11 +35,7 @@
             <tr>
               <th><%= f.label :status, "注文ステータス" %></th>
               <td>
-                <% if @order.status == "preparing_delivery" || @order.status == "delivered" %>
-                  <%= f.select :status, @order.status %>
-                <% else %>
-                  <%= f.select :status, @order.status, {disabled: ["発送準備中","発送済み"]} %>
-                <% end %>
+                <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
                 <%= f.submit "更新", class: "btn btn-success" %>
               </td>
             </tr>
@@ -69,9 +65,9 @@
             <td class="text-center"><%= (order_detail.price * order_detail.quantity).to_s(:delimited) %>円</td>
             <td class="text-right">
               <%= form_with model: order_detail, url: admin_order_path, method: :patch, local: true do |f| %>
-              <%= f.hidden_field :order_detail_id, :value => order_detail.id %>
-              <%= f.select :production_status, @order.status %>
-              <%= f.submit "更新", class: "btn btn-success" %>
+                <%= f.hidden_field :order_item_id, :value => order_detail.id %>
+                <%= f.select :making_status, OrderItem.making_statuses.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), k]} %>
+                <%= f.submit "更新", class: "btn btn-success" %>
               <% end %>
             </td>
           </tr>
