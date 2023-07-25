@@ -1,5 +1,5 @@
-<h2>注文履歴一覧</h2>
 <div class="container">
+  <h2 class="mt-5 mb-5">注文履歴一覧</h2>
   <div class="row">
       <table class="table">
 
@@ -15,23 +15,23 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td class="align-middle link">
+              <td class="link text-center">
                 <%= link_to admin_order_path(order) do %>
                   <%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
                 <% end %>
               </td>
-              <td class="align-middle">
+              <td class="text-center">
                 <%= order.customer.last_name+order.customer.first_name %>
               </td>
-              <td class="align-middle">
+              <td class="text-center">
                 <% @total_quantity = 0 %>
-                <% order.order_details.each do |order_detail| %>
-                  <% @total_quantity += order_detail.amount %>
+                <% order.order_items.each do |order_detail| %>
+                  <% @total_quantity += order_detail.quantity %>
                 <% end %>
                 <%= @total_quantity %>
               </td>
-              <td class="align-middle">
-                <%= order.order_status %>
+              <td class="text-center">
+                <%= order.status_i18n %>
               </td>
             </tr>
           <% end %>
