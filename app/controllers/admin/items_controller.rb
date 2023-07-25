@@ -1,13 +1,16 @@
 class Admin::ItemsController < ApplicationController
   def index
+    @items = Item.all
+
+    # 商品検索機能
     if params[:word] == nil
-      @items = Item.page(params[:page]).per(10)
+      @items = @items.page(params[:page]).per(10)
     elsif params[:word] == ''
-      @items = Item.page(params[:page]).per(10)
+      @items = @items.page(params[:page]).per(10)
     else
       @serch_word = params[:word]
-      @serch_counts = Item.where("name LIKE ?",'%' + params[:word] + '%' ).or(Item.where("explanation LIKE ?",'%' + params[:word] + '%' )).count
-      @items = Item.where("name LIKE ?",'%' + params[:word] + '%' ).or(Item.where("explanation LIKE ?",'%' + params[:word] + '%' )).page(params[:page]).per(10)
+      @serch_counts = @items.where("name LIKE ?",'%' + params[:word] + '%' ).or(Item.where("explanation LIKE ?",'%' + params[:word] + '%' )).count
+      @items = @items.where("name LIKE ?",'%' + params[:word] + '%' ).or(Item.where("explanation LIKE ?",'%' + params[:word] + '%' )).page(params[:page]).per(10)
     end
   end
 
