@@ -1,9 +1,19 @@
+<!--イラストロゴのリンク先-->
+<% if admin_signed_in? %>
+  <% @top_page_path = admin_root_path %>
+<% else %>
+  <% @top_page_path = root_path %>
+<% end %>
+
+<!--ヘッダー画面-->
 <header>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#DFD8C8;">
     <div class="col-lg-3">
       <!--イラストロゴ-->
       <div class="navbar-brand mb-auto">
-        <%= image_tag 'linkedin_banner_image_1.png', height: '100px' %>
+        <%= link_to @top_page_path do %>
+          <%= image_tag 'linkedin_banner_image_1.png', height: '100px' %>
+        <% end %>
       </div>
     </div>
 
@@ -26,12 +36,15 @@
               <li><%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-outline-dark m-3" %></li>
               <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark m-3" %></li>
             <% else %>
-              <li><%= link_to 'About', about_path, class: "btn btn-outline-dark m-3" %></li>
-              <li><%= link_to '商品一覧', items_path, class: "btn btn-outline-dark m-3" %></li>
-              <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-outline-dark m-3" %></li>
               <% if customer_signed_in? %>
+                <li><%= link_to 'マイページ', customers_my_page_path, class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to '商品一覧', items_path, class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to 'カート', cart_items_path, class: "btn btn-outline-dark m-3" %></li>
                 <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-outline-dark m-3" %></li>
               <% else %>
+                <li><%= link_to 'About', about_path, class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to '商品一覧', items_path, class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-outline-dark m-3" %></li>
                 <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-outline-dark m-3" %></li>
               <% end %>
             <% end %>
