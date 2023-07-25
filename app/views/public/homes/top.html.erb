@@ -1,0 +1,30 @@
+<div class="container">
+  <h3 class="text-center">新着商品</h3>
+  <div class="center">
+    <div class="text-center rounded-pill", style="background-color:#DFD8C8;">
+      ようこそ、ながのCAKEへ!!</br>
+      このサイトは、ケーキ販売のECサイトになります。</br>
+      会員でない方も商品の閲覧はできますが、</br>
+      購入には会員登録が必要になります。
+    </div>
+  </div>
+
+  <div class="row">
+    <% @items.first(4).each do |sweet| %>
+      <div class="clearfix">
+        <div class="float-none mb-2 align-items-center">
+          <%= link_to item_path(sweet.item_image) do %>
+            <%= image_tag sweet.get_item_image, size:'200x200' %>
+          <% end %>
+        </div>
+         <div class="float-none"><%= sweet.name %></div>
+        <% if sweet.is_active == true %>
+          <div>¥<%= sweet.price %></div>
+        <% else %>
+          <div>販売停止中</div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "全ての商品を見る >", items_path %>
+</div>

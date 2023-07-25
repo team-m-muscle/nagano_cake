@@ -1,9 +1,12 @@
 
+<div class="container" >
+<br>
+<table>
 <tr>
-  <td><h1>ショッピングカート<h1></td>
-  <td><%= link_to cart_items_destroy_all_path, method: :delete do %><button class="btn btn-danger ">カートを空にする</button><% end %></td>
+  <h3 class="bg-light">　ショッピングカート<h3>
+  <div class="text-right" ><%= link_to cart_items_destroy_all_path, method: :delete do %><button class="btn btn-danger ">カートを空にする</button><% end %></div>
 </tr>
-
+</table>
   <table class="table table-bordered">
   <thead class="table-secondary">
     <th>商品名</th>
@@ -43,14 +46,24 @@
   </tbody>
 </table>
 
-
+<table class="table table-bordered">
 
 
 <%= link_to root_path do %>
  <button class="btn btn-primary">買い物を続ける</button>
 <% end %>
-
-
-<%= link_to new_order_path do %>
+<div class="text-right">
+<th class="table-secondary">合計金額</th>
+<th>
+<% @cart_items.each do |cart_item| %>
+<% @total_price += cart_item.item.price * 1.1 * cart_item.quantity %>
+    <% end %>
+<%= number_to_currency(@total_price, precision: 0, unit: "") %>
+</th>
+</div>
+</table>
+<br><br><div class="text-center"><%= link_to new_order_path do %>
  <button class="btn btn-lg btn-success">情報入力に進む</button>
-<% end %>
+<% end %></div>
+
+</div>

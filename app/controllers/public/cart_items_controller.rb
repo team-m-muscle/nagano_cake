@@ -4,9 +4,10 @@ class Public::CartItemsController < ApplicationController
     @cart_items = current_customer.cart_items
     @items = Item.all
     @cart_item = @items.all
-    
+    @total_price = 0
     
   end
+ 
   def create
     @cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id])
     if @cart_item
@@ -20,14 +21,15 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item = current_customer
+    @cart_item = CartItem.find(params[:id])
     @item = Item.all
     @cart_item.update(cart_item_params)
     redirect_to cart_items_path
   end
 
   def destroy
-    current_customer.cart_items.find(params[:id]).destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
     redirect_to cart_items_path
   end
 
@@ -35,6 +37,8 @@ class Public::CartItemsController < ApplicationController
     current_customer.cart_items.destroy_all
     redirect_to cart_items_path
   end
+
+
 
   private
   def cart_item_params
