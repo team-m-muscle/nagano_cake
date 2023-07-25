@@ -1,0 +1,16 @@
+<% if admin_signed_in? %>
+  <% @serch_path = admin_items_path %>
+<% else %>
+  <% @serch_path = items_path %>
+<% end %>
+
+<%= form_with url: @serch_path, method: :get do |f| %>
+  <div class="row">
+    <div><%= f.text_field :word, placeholder: "商品検索" %></div>
+    <div><%= f.submit "検索" %></div>
+  </div>
+  <% unless @serch_counts.nil? %>
+    <b class="row mt-3 text-white">⇒　"<%= @serch_word %>"で<%= @serch_counts %>件ヒット</b>
+  <% end %>
+<% end %>
+
