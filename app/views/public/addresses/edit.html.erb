@@ -8,19 +8,19 @@
         <tr>
         <div calss="form-group">
           <th><%= f.label :"郵便番号(ハイフンなし)" %></th>
-          <td><%= f.text_field :post_code %></td>
+          <td><%= f.text_field :post_code, class: "form-control", style: "width: 200px;" %></td>
         </div>
         </tr>
         <tr>
         <div calss="form-group">
           <th><%= f.label :"住所" %></th>
-          <td><%= f.text_field :address %></td>
+          <td><%= f.text_field :address, class: "form-control", style: "width: 400px;" %></td>
         </div>
         </tr>
         <tr>
         <div calss="form-group">
           <th><%= f.label :"宛名" %></th>
-          <td><%= f.text_field :name %></td>
+          <td><%= f.text_field :name, class: "form-control", style: "width: 200px;" %></td>
         　<td><%= f.submit "変更内容を保存する", class:"btn btn-success" %></td>
         </div>
         </tr>

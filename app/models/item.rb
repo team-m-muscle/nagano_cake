@@ -10,8 +10,15 @@ class Item < ApplicationRecord
 
   has_one_attached :item_image
 
+  # 商品画像取得ver.1
   def get_item_image
     (item_image.attached?) ? item_image : 'no_image.jpg'
+  end
+
+  # 商品画像取得ver.2
+  def get_item_image2(width, height)
+    (item_image.attached?) ? item_image : 'no_image.jpg'
+    item_image.variant(resize_to_limit: [width, height]).processed
   end
 
   def with_tax_price
