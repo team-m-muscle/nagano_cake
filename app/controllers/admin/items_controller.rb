@@ -11,6 +11,7 @@ class Admin::ItemsController < ApplicationController
       @serch_word = params[:word]
       @serch_counts = @items.where("name LIKE ?",'%' + params[:word] + '%' ).or(Item.where("explanation LIKE ?",'%' + params[:word] + '%' )).count
       @items = @items.where("name LIKE ?",'%' + params[:word] + '%' ).or(Item.where("explanation LIKE ?",'%' + params[:word] + '%' )).page(params[:page]).per(10)
+      flash[:notice] = "test"
     end
   end
 
