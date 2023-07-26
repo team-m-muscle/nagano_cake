@@ -5,13 +5,13 @@ class Public::CartItemsController < ApplicationController
     @items = Item.all
     @cart_item = @items.all
     @total_price = 0
-    
+
   end
- 
+
   def create
     @cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id])
     if @cart_item
-      @cart_item.quantity = CartItem.new(cart_item_params).quantity
+      @cart_item.quantity = CartItem.new(cart_item_params).quantity + @cart_item.quantity
     else
       @cart_item = CartItem.new(cart_item_params)
     end
@@ -36,6 +36,7 @@ class Public::CartItemsController < ApplicationController
   def destroy_all
     current_customer.cart_items.destroy_all
     redirect_to cart_items_path
+    flash[:notice] = "カートは空です"
   end
 
 
@@ -43,6 +44,6 @@ class Public::CartItemsController < ApplicationController
   private
   def cart_item_params
       params.require(:cart_item).permit(:item_id, :quantity)
-  end   
+  end
 
 end
