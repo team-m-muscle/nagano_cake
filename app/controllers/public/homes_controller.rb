@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @items = Item.all.order(created_at: :desc)
+    @items = Item.where(is_active: true).order(updated_at: :desc,reated_at: :desc)
     @genres = Genre.all
   end
 

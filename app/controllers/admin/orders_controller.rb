@@ -10,10 +10,12 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order_details = OrderItem.where(order_id: @order)
+
     if @order.update(order_status_params)
-      flash[:notice] = "注文ステータスを変更しました。"
+      @order_details.update_all(making_status: 1) if @order.status == "payment_confirmation"
       redirect_to request.referer
     else
+
       render "show"
     end
   end
