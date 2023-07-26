@@ -20,4 +20,14 @@ class Customer < ApplicationRecord
   def address_display
     '〒' + post_code + ' ' + address + ' ' + last_name + first_name
   end
+
+  def active_for_authentication?
+    super ^ self.is_deleted?
+  end
+
+#非アクティブアカウントでのログイン失敗時にエラーメッセージを出したいが、うまくいかないので残存課題とする
+#  def inactive_message
+#    is_deleted? == false ? super : :deleted
+#  end
+
 end
