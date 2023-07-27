@@ -1,29 +1,26 @@
-<h1>商品詳細</h1>
-<div class="container">
+<div class="container-fluid"><br><br>
   <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2"><%= render "search_genre", genre: @genre %></div>
+    <div class="col-3">
+    <%= image_tag @item.get_item_image, size:'300x300' %>
+    </div>
     <div class="col-4">
-    <%= image_tag @item.get_item_image, size:'200x200' %>
-    </div>
-    <div class="col-8">
-    <div class="row">
-    <div class="col-9"><h3><%= @item.name %></h3></div>
-    </div>
-    <div class="row">
-    <div class="col-3"><%= @item.explanation %></div>
-    <div class="col-9"></div>
-    </div>
-    <br>
-    <div class="row">
-    <div class="col-3"><h4>¥<%= number_to_currency(@item.price*1.1, format: "%n%u", unit: "円", precision: 0) %>(税込)</h4></div>
-    <div class="col-9"></div>
-    </div>
+    <h3><%= @item.name %></h3>
+    <%= @item.explanation %><br><br><br>
+    <% if @item.is_active %><b class="text-success">販売中</b>
+    <% else %><b class="text-secondary">販売中止</b>
+    <% end %><br><br>
+    <h4>¥<%= number_to_currency(@item.price*1.1, format: "%n%u", unit: "円", precision: 0) %>(税込)</h4><br>
     <% if customer_signed_in? %>
+    <% if @item.is_active %>
     <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
     <%= f.hidden_field :item_id, :value => @item.id %>
-    <div class="col-3"><%= f.number_field :quantity , placeholder: "個数選択", min: 1, max: 999999999 %></div>
-    <div class="col-9"><%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %></div>
+    <%= f.number_field :quantity , placeholder: "個数選択", default:1, min: 1, max: 999999999 %>　　<%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
     <% end %>
     <% end %>
+    <% end %>
+    <div class="col-1"></div>
     </div>
     </div>
   </div>
