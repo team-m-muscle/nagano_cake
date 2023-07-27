@@ -17,7 +17,10 @@ class Item < ApplicationRecord
 
   # 商品画像取得ver.2
   def get_item_image2(width, height)
-    (item_image.attached?) ? item_image : 'no_image.jpg'
+    unless item_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      item_image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpeg')
+    end
     item_image.variant(resize_to_limit: [width, height]).processed
   end
 
