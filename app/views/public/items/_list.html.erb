@@ -1,6 +1,5 @@
 <div class="row">
   <% items.each do |item| %>
-  <% if item.is_active %>
     <div class="m-2">
     <%= link_to item_path(item.id) do %>
       <%= image_tag item.get_item_image2(200, 200) %>
@@ -8,7 +7,6 @@
     <%= link_to item.name, item_path(item.id), class: "font-weight-bold" %><br>
       <%= number_to_currency(item.with_tax_price, unit: "円", precision: 0) %>（税込）
     </div>
-  <% end %>
   <% end %>
 </div>
 <%= paginate items, theme: 'bootstrap-5' %>
