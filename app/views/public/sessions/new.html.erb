@@ -2,18 +2,18 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 col-offset-2">
-      <h3 class="my-3 px-4 bg-secondary">ログイン</h3>
-      <h5 class="my-3 px-4 bg-secondary">会員の方はこちらからログイン</h5>
+      <h3 class="my-3 px-4 bg-light font-weight-bold">ログイン</h3>
+      <h5 class="my-3 px-4 bg-light font-weight-bold">会員の方はこちらからログイン</h5>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <table class="table">
         <tbody>
           <tr>
             <td>メールアドレス</td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 300px;" %></td>
           </tr>
           <tr>
             <td>パスワード</td>
-            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control", style: "width: 300px;" %></td>
           </tr>
           <tr>
             <td></td>
@@ -22,7 +22,7 @@
         </tbody>
       </table>
       <% end %>
-    <h5 class="my-3 px-4 bg-secondary">会員登録がお済みでない方</h5>
+    <h5 class="my-3 px-4 bg-light font-weight-bold">会員登録がお済みでない方</h5>
     <p><%= render "public/shared/links" %>から新規登録を行ってください</p>
     </div>
   </div>

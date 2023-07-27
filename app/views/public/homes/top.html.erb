@@ -1,4 +1,10 @@
+<div class="flash text-center font-weight-bold"><%= flash[:left] %></div>
 <div class="container">
+  <div class="row">
+    <div class="col-2">
+      <br><%= render "public/items/search_genre", genre: @genres %>
+    </div>
+    <div class="col-10">
   <div class="center">
     <div class="text-center rounded-pill mt-5", style="background-color:#DFD8C8;">
       ようこそ、ながのCAKEへ!!</br>
@@ -30,6 +36,13 @@
       <%= link_to "全ての商品を見る >", items_path %>
     </div>
   </div>
+  </div>
 
-
+  </div>
 </div>
+
+<script>
+  $(function() {
+    setTimeout("$('.flash').fadeOut('slow')", 4000);
+  });
+</script>

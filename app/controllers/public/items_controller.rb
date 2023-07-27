@@ -21,7 +21,9 @@ class Public::ItemsController < ApplicationController
   end
 
   def search
+    @genres = Genre.all
     @genre = Genre.find(params[:id])
-    @items = @genre.items
+    @items = @genre.items.page(params[:page]).per(10)
+    @items_count = @genre.items.all
   end
 end
