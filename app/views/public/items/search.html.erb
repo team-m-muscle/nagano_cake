@@ -1,11 +1,7 @@
-<div>
-  <h4><%= @genre.name %>の検索結果 <%= @items.count %>件のヒット</h4>
+<%= render "search_genre", genre: @genre %>
+<div class="container">
+  <br>
+  <h3><%= @genre.name %>の検索結果 <%= @items.where(is_active:true).count %>件のヒット</h3>
+  <br>
+<%= render "list", items: @items%>
 </div>
-
-<% @items.each do |item| %>
-  <%= link_to item_path(item.id) do %>
-    <%= image_tag item.get_item_image, size: "200x200" %>
-  <% end %>
-  <%= link_to item.name, item_path(item.id) %>
-  <%= number_to_currency((item.price*1.1).floor, unit: "円", precision: 0) %>（税込）
-<% end %>
