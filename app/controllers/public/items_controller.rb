@@ -1,8 +1,8 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
-
+    @items = Item.all.page(params[:page]).per(8)
+    @items_count = Item.all
     # 商品検索機能
     unless params[:word] == nil
       unless params[:word] == ''
@@ -16,6 +16,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    @genres = Genre.all
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end
