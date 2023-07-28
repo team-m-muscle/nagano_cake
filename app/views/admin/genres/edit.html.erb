@@ -1,0 +1,8 @@
+ <h3>ジャンル編集</h3>
+  <%= form_with model: @genre, url: admin_genre_path, class: "genre_edit_form", local:true do |f| %>
+    <div>
+    <%= f.label :ジャンル %>
+    <%= f.text_field :name, class: "genre-edit-field" %></td>
+    <%= f.submit "変更を保存", class: "btn btn-primary genre_edit_btn" %>
+    </div>    
+  <% end %>

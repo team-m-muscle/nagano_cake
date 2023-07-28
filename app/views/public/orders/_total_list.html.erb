@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td class="align-middle table-secondary" style="width: 50%">送料</td>
+      <td class="align-middle" style="width: 50%"><%= number_to_currency(shipping_fee, precision: 0, unit: "") %></td>
+    </tr>
+    <tr>
+      <td class="align-middle table-secondary">商品合計</td>
+      <td class="align-middle">
+        <%= number_to_currency(total_price, precision: 0, unit: "") %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-middle table-secondary">請求金額</td>
+      <td class="align-middle"><%= number_to_currency(billing_price, precision: 0, unit: "") %></td>
+    </tr>
+  </tbody>
+</table>

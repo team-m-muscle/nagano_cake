@@ -1,0 +1,13 @@
+<div class="container-fluid"><br>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2">
+      <%= render "search_genre", genre: @genre %>
+    </div>
+    <div class="col-8">
+      商品一覧 全<%= @items_count.count %>件<br>
+     <%= render "list", items: @items %>
+    </div>
+    <div class="col-1"></div>
+  </div>    
+</div>
