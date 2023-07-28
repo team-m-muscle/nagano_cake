@@ -11,7 +11,7 @@
     <% if @item.is_active %><b class="text-success">販売中</b>
     <% else %><b class="text-secondary">販売中止</b>
     <% end %><br><br>
-    <h4>¥<%= number_to_currency(@item.price*1.1, format: "%n%u", unit: "円", precision: 0) %>(税込)</h4><br>
+    <h4><%= number_to_currency(@item.price*1.1, format: "%n%u", unit: "円", precision: 0) %>(税込)</h4><br>
     <% if customer_signed_in? %>
     <% if @item.is_active %>
     <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>

@@ -25,7 +25,7 @@
         </div>
         <div><%= sweet.name %></div>
         <% if sweet.is_active == true %>
-          <div>¥<%= sweet.price %></div>
+          <div><%= number_to_currency(sweet.with_tax_price, precision: 0) %></div>
         <% else %>
           <div>販売停止中</div>
         <% end %>
