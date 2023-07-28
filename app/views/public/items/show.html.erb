@@ -16,7 +16,7 @@
     <% if @item.is_active %>
     <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
     <%= f.hidden_field :item_id, :value => @item.id %>
-    <%= f.number_field :quantity , placeholder: "個数選択", default:1, min: 1, max: 999999999 %>　　<%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
+    <%= f.number_field :quantity , placeholder: "個数選択", value: 1, min: 1, max: 999999999 %>　　<%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
     <% end %>
     <% end %>
     <% end %>

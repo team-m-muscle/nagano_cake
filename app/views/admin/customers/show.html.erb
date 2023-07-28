@@ -44,7 +44,11 @@
           </tr>
           <tr>
             <td></td>
-            <td><%= link_to "編集する", edit_admin_customer_path, class:"btn btn-success" %>　　<%= link_to "注文履歴一覧を見る", order_path, class:"btn btn-info" %></td>
+            <% if Order.find_by(customer_id: @customer.id) %>
+              <td><%= link_to "編集する", edit_admin_customer_path, class:"btn btn-success" %>　　<%= link_to "注文履歴一覧を見る", admin_root_path, class:"btn btn-info" %></td>
+            <% else %>
+              <td><%= link_to "編集する", edit_admin_customer_path, class:"btn btn-success" %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>
